@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5550238007831113884}
   - component: {fileID: 5550238007831113885}
   - component: {fileID: 5550238007831113886}
-  - component: {fileID: 5610675690768055145}
+  - component: {fileID: 1782427103917390176}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteShapeRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Color: {r: 0.6792453, g: 0.0631472, b: 0.028835872, a: 1}
+  m_Color: {r: 0.13594761, g: 0.027450986, b: 0.6784314, a: 1}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 0}
   m_Sprites: []
@@ -153,7 +153,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5550238007831113872}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -172,7 +172,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 3.9999998}
   m_EdgeRadius: 0
---- !u!114 &5610675690768055145
+--- !u!114 &1782427103917390176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5550238007831113872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41ddf902cd50805428ac582632623ff1, type: 3}
+  m_Script: {fileID: 11500000, guid: b858ff12273cfd8418edac0fbc9dc969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coordinates:

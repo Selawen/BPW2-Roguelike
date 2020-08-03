@@ -45,9 +45,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minLength: 10
   maxLength: 20
-  height: 7
+  minHeight: 7
+  maxHeight: 15
   size:
     x: 0
     y: 0
   wallPrefab: {fileID: 5610675690768055145, guid: 44886cf9826d6e5448247c79d3148b34,
     type: 3}
+  groundPrefab: {fileID: 1782427103917390176, guid: 9741745019ad4ab4dbde125b38e629b4,
+    type: 3}
+  nextDirection:
+    x: 0
+    y: 0
+  previousDirection:
+    x: 0
+    y: 0
