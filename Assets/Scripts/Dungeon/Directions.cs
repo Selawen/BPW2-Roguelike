@@ -32,7 +32,7 @@ public static class Directions
         {
             randomDirection = directionVectors[Random.Range(0, directionVectors.Length)];
         }
-        while (randomDirection == back);
+        while (randomDirection == back && Random.Range(0,9) >= 1);
 
         {
             return randomDirection;

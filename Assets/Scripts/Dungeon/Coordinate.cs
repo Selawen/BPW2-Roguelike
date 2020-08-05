@@ -21,6 +21,13 @@ public struct Coordinate
         return a;
     }
 
+    public static Coordinate operator -(Coordinate a, Coordinate b)
+    {
+        a.x -= b.x;
+        a.y -= b.y;
+        return a;
+    }
+
     public static Coordinate operator *(Coordinate a, int b)
     {
         a.x *= b;

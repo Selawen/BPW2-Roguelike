@@ -5,6 +5,7 @@ using UnityEngine;
 public class Generation : MonoBehaviour
 {
     [SerializeField] private int seed;
+    private bool newSeed;
 
     public Dungeon dungeonPrefab;
 
@@ -13,21 +14,44 @@ public class Generation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //when no seed is given, generate one
-        if (seed == 0)
+        SetSeed();
+        GenerateDungeon();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            seed = Random.Range(1,1024);
+            NewDungeon();
+        }
+    }
+
+    private void SetSeed()
+    {
+        //when no seed is given, generate one
+        if (seed == 0 || newSeed == true)
+        {
+            seed = Random.Range(1, 1024) + Random.Range(0, 1024);
+            newSeed = false;
         }
 
         //initialise random state with seed
         Random.InitState(seed);
-
-        GenerateDungeon();
     }
 
     public void GenerateDungeon()
     {
         dungeonInstance = Instantiate(dungeonPrefab) as Dungeon;
+    }
+
+    public void NewDungeon()
+    {
+        newSeed = true;
+        dungeonInstance.gameObject.SetActive(false);
+        //Destroy(dungeonInstance.gameObject);
+        //Destroy(GameObject.FindGameObjectWithTag("Player"));
+        SetSeed();
+        GenerateDungeon();
     }
 
 }

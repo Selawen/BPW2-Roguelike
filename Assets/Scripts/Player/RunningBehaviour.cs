@@ -21,7 +21,7 @@ public class RunningBehaviour : StateMachineBehaviour
     {
         if (Input.GetAxis("Vertical") > 0.3 || Input.GetKey(KeyCode.Space))
         {
-            player.rbPlayer.velocity = (new Vector2(player.rbPlayer.velocity.x, player.jumpSpeed));
+            player.rbPlayer.velocity = (new Vector2(0, player.jumpSpeed));
             animator.SetBool("running", false);
             return;
         }

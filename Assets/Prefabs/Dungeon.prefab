@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceacb65dd6693f84192be528ecdde9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minLength: 10
+  minLength: 11
   maxLength: 20
   minHeight: 7
   maxHeight: 15
@@ -54,9 +54,19 @@ MonoBehaviour:
     type: 3}
   groundPrefab: {fileID: 1782427103917390176, guid: 9741745019ad4ab4dbde125b38e629b4,
     type: 3}
+  borderPrefab: {fileID: 7847962029204857814, guid: 21c0b638591ae66498f13909e113bb2e,
+    type: 3}
+  playerPrefab: {fileID: 728921475270405304, guid: 1a8b0fc7d6eaedf4eb53de50dab91bdd,
+    type: 3}
   nextDirection:
     x: 0
     y: 0
   previousDirection:
+    x: 0
+    y: 0
+  startCoordinate:
+    x: 0
+    y: 0
+  endCoordinate:
     x: 0
     y: 0

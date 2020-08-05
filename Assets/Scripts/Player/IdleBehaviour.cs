@@ -20,7 +20,7 @@ public class IdleBehaviour : StateMachineBehaviour
     {
         if (Input.GetAxis("Vertical") > 0.3 || Input.GetKey(KeyCode.Space))
         {
-            player.rbPlayer.velocity = (new Vector2(player.rbPlayer.velocity.x, player.jumpSpeed));
+            player.rbPlayer.velocity = (new Vector2(0, player.jumpSpeed));
         }
         else if (Input.GetAxis("Horizontal") != 0)
         {
