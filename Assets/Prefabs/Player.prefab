@@ -121,7 +121,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.73
+  m_Radius: 0.75
 --- !u!50 &728921475270405310
 Rigidbody2D:
   serializedVersion: 4
@@ -159,7 +159,8 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   yVelocity: 0
   jumpSpeed: 10
-  runSpeed: 5
+  runSpeed: 10
+  climbSpeed: 3
   moveTowards: {x: 0, y: 0, z: 0}
 --- !u!114 &2859749382277536690
 MonoBehaviour:

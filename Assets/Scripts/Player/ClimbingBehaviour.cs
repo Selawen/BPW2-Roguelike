@@ -7,6 +7,8 @@ public class ClimbingBehaviour : StateMachineBehaviour
     private Player player;
     ContactPoint2D[] contactPoints = new ContactPoint2D[4];
 
+    private bool alongCeiling;
+
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -28,23 +30,36 @@ public class ClimbingBehaviour : StateMachineBehaviour
             return;
         }
 
+        alongCeiling = false;
+
         if (player.GetComponent<Collider2D>().GetContacts(contactPoints) > 0)
         {
-            //checks if player is grounded
+            //checks if player is touching walls
             foreach (ContactPoint2D contactPoint in contactPoints)
             {
-                if (!(contactPoint.point.x > (player.gameObject.transform.position.x + 0.5) || (contactPoint.point.x < (player.gameObject.transform.position.x - 0.5))))
+                if (!(contactPoint.point.x > (player.gameObject.transform.position.x + 0.6) || (contactPoint.point.x < (player.gameObject.transform.position.x - 0.6)) || contactPoint.point.y > (player.gameObject.transform.position.y + 0.5)))
                 {
                     animator.SetBool("climbing", false);
                     return;
                 }
+
+                if (contactPoint.point.y > (player.gameObject.transform.position.y + 0.5))
+                {
+                    alongCeiling = true;
+                }
             }
 
+            //move up or down along wall
             if (Input.GetAxis("Vertical") > 0.3 || Input.GetAxis("Vertical") < -0.3)
             {
-                player.transform.Translate(new Vector3(0, Input.GetAxis("Vertical")*Time.deltaTime));
+                player.transform.Translate(new Vector3(0, Input.GetAxis("Vertical")*Time.deltaTime*player.climbSpeed));
             }
 
+            //move sideways along ceiling
+            if (alongCeiling && (Input.GetAxis("Horizontal") > 0.3 || Input.GetAxis("Horizontal") < -0.3))
+            {
+                player.transform.Translate(new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * player.climbSpeed, 0.0f));
+            }
         }
         else
         {

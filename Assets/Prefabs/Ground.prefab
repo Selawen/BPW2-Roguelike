@@ -74,7 +74,7 @@ SpriteShapeRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Color: {r: 0.13594761, g: 0.027450986, b: 0.6784314, a: 1}
+  m_Color: {r: 0.6784314, g: 0.027450986, b: 0.027450986, a: 1}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 0}
   m_Sprites: []

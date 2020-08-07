@@ -16,6 +16,7 @@ public class Dungeon : MonoBehaviour
     [SerializeField] private Ground groundPrefab;
     [SerializeField] private Border borderPrefab;
     [SerializeField] private Player playerPrefab;
+    [SerializeField] private Finish finishPrefab;
 
     public List<Wall> path { get; private set; }
     public Coordinate nextDirection;
@@ -39,7 +40,7 @@ public class Dungeon : MonoBehaviour
         path = new List<Wall>();
         GeneratePath();
         GenerateFiller();
-        //GenerateBorders();
+        GenerateBorders();
         GenerateContent();
     }
 
@@ -166,24 +167,27 @@ public class Dungeon : MonoBehaviour
         return newGround;
     }
 
-    /*
+    
     private void GenerateBorders()
     {
         Border borderLeft = Instantiate(borderPrefab, transform) as Border;
         borderLeft.name = "Border Left";
+        borderLeft.coordinates = new Coordinate(-1,0);
         borderLeft.transform.localScale = new Vector3(borderLeft.transform.localScale.x, borderLeft.transform.localScale.y * size.y, borderLeft.transform.localScale.z);
-        borderLeft.transform.position = new Vector3(-1 - size.x * 0.7f + 0.2f, 0.0f, 0.0f);
+        borderLeft.transform.position = new Vector3(borderLeft.coordinates.x * 1.6f - size.x * 0.7f + 0.2f, 0.0f, 0.0f);
 
         Border borderRight = Instantiate(borderPrefab, transform) as Border;
         borderRight.name = "Border Right";
+        borderRight.coordinates = new Coordinate((size.x+1), 0);
         borderRight.transform.localScale = new Vector3(borderRight.transform.localScale.x, borderRight.transform.localScale.y * size.y, borderRight.transform.localScale.z);
-        borderRight.transform.position = new Vector3(size.x + 1 - size.x * 0.7f + 0.2f, 0.0f, 0.0f);
+        borderRight.transform.position = new Vector3(borderRight.coordinates.x *1.6f - size.x*0.8f + 0.2f, 0.0f, 0.0f);
     }
-    */
+    
 
 
     private void GenerateContent()
     {
+        //instantiate player
         Player newPlayer = Instantiate(playerPrefab, transform) as Player;
 
         while (GetWall(startCoordinate - new Coordinate(0,1)) != null)
@@ -192,5 +196,10 @@ public class Dungeon : MonoBehaviour
         }
 
         newPlayer.transform.position = new Vector3(startCoordinate.x * 1.6f - size.x * 0.7f + 0.2f, startCoordinate.y * 1.6f - size.y * 0.7f + 0.2f, 0.0f);
+
+        //instantiate finish
+        Finish newFinish = Instantiate(finishPrefab, transform) as Finish;
+
+        newFinish.transform.position = new Vector3(endCoordinate.x * 1.6f - size.x * 0.7f + 0.2f, endCoordinate.y * 1.6f - size.y * 0.7f + 0.2f, 0.0f);
     }
 }

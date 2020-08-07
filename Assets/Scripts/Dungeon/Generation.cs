@@ -48,10 +48,7 @@ public class Generation : MonoBehaviour
     {
         newSeed = true;
         dungeonInstance.gameObject.SetActive(false);
-        //Destroy(dungeonInstance.gameObject);
-        //Destroy(GameObject.FindGameObjectWithTag("Player"));
         SetSeed();
         GenerateDungeon();
     }
-
 }

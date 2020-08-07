@@ -58,6 +58,8 @@ MonoBehaviour:
     type: 3}
   playerPrefab: {fileID: 728921475270405304, guid: 1a8b0fc7d6eaedf4eb53de50dab91bdd,
     type: 3}
+  finishPrefab: {fileID: 9056999202786519850, guid: a628de8fb2ac89143bbbbee20807c0b4,
+    type: 3}
   nextDirection:
     x: 0
     y: 0

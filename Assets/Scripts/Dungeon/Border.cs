@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Border : MonoBehaviour
 {
+    public Coordinate coordinates;
+
     // Start is called before the first frame update
     void Start()
     {

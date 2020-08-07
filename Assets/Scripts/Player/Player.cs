@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float yVelocity;
     public float jumpSpeed;
     public float runSpeed;
+    public float climbSpeed;
     
     public Vector3 moveTowards;
 
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
     public void Move()
     {
         moveTowards = new Vector3(Input.GetAxis("Horizontal") * runSpeed * Time.deltaTime, 0);
-        if (gameObject.transform.position.x + moveTowards.x < - GetComponentInParent<Dungeon>().size.x * 0.7f + 0.2f || gameObject.transform.position.x + moveTowards.x > (GetComponentInParent<Dungeon>().size.x+1) * 0.7f + 0.2f)
+        if (animator.GetBool("climbing"))
         {
             return;
         }
