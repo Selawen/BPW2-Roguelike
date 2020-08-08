@@ -189,6 +189,7 @@ public class Dungeon : MonoBehaviour
     {
         //instantiate player
         Player newPlayer = Instantiate(playerPrefab, transform) as Player;
+        newPlayer.name = "Player";
 
         while (GetWall(startCoordinate - new Coordinate(0,1)) != null)
         {
@@ -199,6 +200,8 @@ public class Dungeon : MonoBehaviour
 
         //instantiate finish
         Finish newFinish = Instantiate(finishPrefab, transform) as Finish;
+        newFinish.name = "Finish";
+        newFinish.GetComponent<Finish>().hasFinished = false;
 
         newFinish.transform.position = new Vector3(endCoordinate.x * 1.6f - size.x * 0.7f + 0.2f, endCoordinate.y * 1.6f - size.y * 0.7f + 0.2f, 0.0f);
     }

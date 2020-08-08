@@ -5,13 +5,15 @@ using TMPro;
 
 public class Finish : MonoBehaviour
 {
-    [SerializeField] private GameObject finishPanel;
+    UIPanels panels;
+    public bool hasFinished;
 
     // Start is called before the first frame update
     void Start()
     {
-        finishPanel = GameObject.Find("FinishPanel");
-        finishPanel.SetActive(false);
+        panels = GameObject.Find("Canvas").GetComponent<UIPanels>();
+        panels.finishPanel.SetActive(false);
+        hasFinished = false;
     }
 
     // Update is called once per frame
@@ -24,8 +26,10 @@ public class Finish : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameObject.Find("GameManager").GetComponent<SaveGame>().CompletedRoom();
+            hasFinished = true;
             Time.timeScale = 0;
-            finishPanel.SetActive(true);
+            panels.finishPanel.SetActive(true);
         }
     }
 }

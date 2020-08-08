@@ -21,7 +21,10 @@ public class Player : MonoBehaviour
         rbPlayer = gameObject.GetComponent<Rigidbody2D>();
         playerSprite = gameObject.GetComponent<SpriteRenderer>();
 
+        rbPlayer.velocity = new Vector2(0,0);
         yVelocity = 0;
+        animator.SetBool("running", false);
+        animator.SetBool("climbing", false);
     }
 
     private void FixedUpdate()
