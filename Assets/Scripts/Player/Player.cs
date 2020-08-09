@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //public State currentState;
+
     private Animator animator;
     public Rigidbody2D rbPlayer;
     public SpriteRenderer playerSprite;
@@ -12,8 +14,11 @@ public class Player : MonoBehaviour
     public float jumpSpeed;
     public float runSpeed;
     public float climbSpeed;
+    public bool canClimb;
     
     public Vector3 moveTowards;
+
+    private bool died = false;
 
     private void Start()
     {
@@ -29,23 +34,54 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        animator.SetFloat("yVelocity", rbPlayer.velocity.y);
-
-        //look left when going left
-        if (Input.GetAxis("Horizontal") < 0)
+        if (!died)
         {
-            playerSprite.flipX = true;
-        }
-        //look right when going right
-        else if (Input.GetAxis("Horizontal") > 0)
-        {
-            playerSprite.flipX = false;
+            animator.SetFloat("yVelocity", rbPlayer.velocity.y);
+
+            //look left when going left
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                playerSprite.flipX = true;
+            }
+            //look right when going right
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                playerSprite.flipX = false;
+            }
+
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Climbing"))
+            {
+                Move();
+            }
         }
 
-        Move(); 
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+        {
+            died = true;
+        }
     }
 
-    public void Move()
+    
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        //if the player isn't touching anything
+        if (!(GetComponent<Collider2D>().GetContacts(new ContactPoint2D[4]) > 0))
+        {
+            //if the player was climbing
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Climbing"))
+            {
+                animator.SetBool("climbing", false);
+            }
+            canClimb = false;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+            canClimb = true;
+    }
+
+    private void Move()
     {
         moveTowards = new Vector3(Input.GetAxis("Horizontal") * runSpeed * Time.deltaTime, 0);
         if (animator.GetBool("climbing"))
@@ -54,4 +90,5 @@ public class Player : MonoBehaviour
         }
         gameObject.transform.Translate(moveTowards); 
     }
+
 }

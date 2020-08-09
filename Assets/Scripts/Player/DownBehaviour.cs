@@ -35,7 +35,7 @@ public class DownBehaviour : StateMachineBehaviour
             player.rbPlayer.velocity = (new Vector2(0, player.jumpSpeed));
         }
         */
-        if (player.GetComponent<Collider2D>().GetContacts(contactPoints) > 0)
+        if (player.GetComponent<CircleCollider2D>().GetContacts(contactPoints) > 0)
         {
             foreach (ContactPoint2D contactPoint in contactPoints)
             {

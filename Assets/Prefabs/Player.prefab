@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 728921475270405308}
   - component: {fileID: 728921475270405299}
   - component: {fileID: 728921475270405311}
+  - component: {fileID: 9119825359847608341}
   - component: {fileID: 728921475270405310}
   - component: {fileID: 728921475270405304}
   - component: {fileID: 2859749382277536690}
@@ -122,6 +123,32 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.75
+--- !u!61 &9119825359847608341
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728921475270405298}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.44, y: 1.47}
+    newSize: {x: 1.44, y: 1.47}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 1.6}
+  m_EdgeRadius: 0
 --- !u!50 &728921475270405310
 Rigidbody2D:
   serializedVersion: 4
@@ -161,6 +188,7 @@ MonoBehaviour:
   jumpSpeed: 10
   runSpeed: 10
   climbSpeed: 3
+  canClimb: 0
   moveTowards: {x: 0, y: 0, z: 0}
 --- !u!114 &2859749382277536690
 MonoBehaviour:

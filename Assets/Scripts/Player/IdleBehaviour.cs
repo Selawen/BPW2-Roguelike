@@ -18,7 +18,7 @@ public class IdleBehaviour : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Input.GetAxis("Vertical") > 0.3 || Input.GetKey(KeyCode.Space))
+        if (Input.GetAxis("Vertical") > 0.1f || Input.GetKey(KeyCode.Space))
         {
             player.rbPlayer.velocity = (new Vector2(0, player.jumpSpeed));
         }

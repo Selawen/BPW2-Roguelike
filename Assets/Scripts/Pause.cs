@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
     UIPanels panels;
-    private bool paused;
+    public bool paused { get; private set; }
 
     // Start is called before the first frame update
     void Start()

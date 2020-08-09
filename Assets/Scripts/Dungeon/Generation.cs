@@ -73,9 +73,9 @@ public class Generation : MonoBehaviour
 
     public void DestroyOldDungeons()
     {
-        for (int x = generatedDungeons.Count-1; x > 0; x--)
+        for (int x = generatedDungeons.Count-1; x >= 0; x--)
         {
-            Destroy(generatedDungeons[x]);
+            Destroy(generatedDungeons[x].gameObject);
             generatedDungeons.RemoveAt(x);
         }
     }

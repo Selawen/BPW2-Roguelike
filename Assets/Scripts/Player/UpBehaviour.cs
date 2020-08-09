@@ -19,8 +19,18 @@ public class UpBehaviour : StateMachineBehaviour
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {        
-        if (player.GetComponent<Collider2D>().GetContacts(contactPoints) > 0)
+    {     
+        if (player.canClimb)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                animator.SetBool("climbing", true);
+                player.rbPlayer.velocity = (new Vector2(0, 0));
+                return;
+            }
+        }   
+
+        if (player.GetComponent<CircleCollider2D>().GetContacts(contactPoints) > 0)
         {
             foreach (ContactPoint2D contactPoint in contactPoints)
             {
@@ -32,15 +42,11 @@ public class UpBehaviour : StateMachineBehaviour
                 }
             }
 
-            if (Input.GetKey(KeyCode.Space))
-            {
-                animator.SetBool("climbing", true);
-                player.rbPlayer.velocity = (new Vector2(0, 0));
-            }
-            else if (Input.GetAxis("Vertical") > 0.3)
+            if (Input.GetAxis("Vertical") > 0.3)
             {
                 player.rbPlayer.velocity = (new Vector2(0, player.jumpSpeed));
             }   
         }
+
     }
 }

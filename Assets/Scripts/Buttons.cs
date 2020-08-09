@@ -51,11 +51,13 @@ public class Buttons : MonoBehaviour
     public void MainMenu()
     {
         generation.DestroyOldDungeons();
-        panels.pausePanel.SetActive(false);
+        if (generation.gameObject.GetComponent<Pause>().paused)
+        {
+            generation.gameObject.GetComponent<Pause>().PauseGame();
+        }
         panels.statsPanel.SetActive(false);
         panels.finishPanel.SetActive(false);
         panels.mainMenuPanel.SetActive(true);
-        Time.timeScale = 1;
     }
 
     public void QuitGame()
