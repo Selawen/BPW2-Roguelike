@@ -18,6 +18,16 @@ public class Enemy : MonoBehaviour
         {
             gameObject.transform.Translate(new Vector3(speed, 0));
         }
+        //look left when going left
+        if (speed < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        //look right when going right
+        else if (speed > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

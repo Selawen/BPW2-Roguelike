@@ -8,6 +8,7 @@ public class Buttons : MonoBehaviour
     SaveGame saveGame;
     UIPanels panels;
     private bool showStats;
+    private bool showAchievements;
 
     private void Start()
     {
@@ -49,6 +50,7 @@ public class Buttons : MonoBehaviour
     public void StartRun()
     {
         panels.howToPlayPanel.SetActive(false);
+        panels.enemyExplainPanel.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -63,6 +65,12 @@ public class Buttons : MonoBehaviour
     {
         showStats = !panels.statsPanel.activeSelf;
         panels.statsPanel.SetActive(showStats);
+    }
+
+    public void Achievements()
+    {
+        showAchievements = !showAchievements;
+        panels.achievementsPanel.SetActive(showAchievements);
     }
 
     public void MainMenu()

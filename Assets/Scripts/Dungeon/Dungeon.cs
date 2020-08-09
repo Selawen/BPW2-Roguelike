@@ -5,6 +5,8 @@ using UnityEngine;
 public class Dungeon : MonoBehaviour
 {
     private SaveGame saveGame;
+    private bool enemiesExplained;
+
     [SerializeField] private int minLength, maxLength;
     private int length;
     [SerializeField] private int minHeight, maxHeight;
@@ -31,6 +33,13 @@ public class Dungeon : MonoBehaviour
     void Start()
     {
         saveGame = GameObject.Find("GameManager").GetComponent<SaveGame>();
+
+        if (saveGame.RoomsCompleted() == 3)
+        {
+            Time.timeScale = 0;
+            GameObject.Find("Canvas").GetComponent<UIPanels>().enemyExplainPanel.SetActive(true);
+        }
+
         length = Random.Range(minLength, maxLength);
         height = Random.Range(minHeight, maxHeight);
         //save the length and height of the dungeon as one "Coordinate"
@@ -212,14 +221,25 @@ public class Dungeon : MonoBehaviour
         if (saveGame.RoomsCompleted() > 3)
         {
             //instantiate enemy
-            foreach (Wall wall in path)
+            for (int x = 0; x < path.Count; x++)
             {
-                if (CanPlaceEnemy(wall.coordinates))
+                if (!(path[x].coordinates.x < 3))
                 {
-                    Enemy newEnemy = Instantiate(EnemyPrefab, transform) as Enemy;
-                    newEnemy.name = "Enemy";
-                    newEnemy.transform.position = new Vector3(wall.coordinates.x * 1.6f - size.x * 0.7f + 0.2f, wall.coordinates.y * 1.6f - size.y * 0.7f + 0.2f, 0.0f);
-                    return;
+
+                    if (CanPlaceEnemy(path[x].coordinates))
+                    {
+                        Enemy newEnemy = Instantiate(EnemyPrefab, transform) as Enemy;
+                        newEnemy.name = "Enemy";
+
+                        int groundY = path[x].coordinates.y;
+                        while (GetWall(new Coordinate(path[x].coordinates.x, groundY) - new Coordinate(0, 1)) != null)
+                        {
+                            groundY -= 1;
+                        }
+
+                        newEnemy.transform.position = new Vector3(path[x].coordinates.x * 1.6f - size.x * 0.7f + 0.2f, groundY * 1.6f - size.y * 0.7f + 0.2f, 0.0f);
+                        return;
+                    }
                 }
             }
         }
@@ -267,3 +287,4 @@ public class Dungeon : MonoBehaviour
         return false;
     }
 }
+

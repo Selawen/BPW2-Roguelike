@@ -19,6 +19,8 @@ public class DyingBehaviour: StateMachineBehaviour
         animator.SetFloat("yVelocity", 0);
 
         GameObject.Find("GameManager").GetComponent<SaveGame>().MissionFailed();
+        PlayerPrefs.SetInt("totalMissionsFailed", (PlayerPrefs.GetInt("totalMissionsFailed") + 1));
+
         panels = GameObject.Find("Canvas").GetComponent<UIPanels>();
         panels.deathPanel.SetActive(true);
         Time.timeScale = 0;

@@ -167,7 +167,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &728921475270405304
@@ -184,9 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbPlayer: {fileID: 0}
   playerSprite: {fileID: 0}
-  yVelocity: 0
-  jumpSpeed: 10
-  runSpeed: 10
+  jumpSpeed: 15
+  runSpeed: 9
   climbSpeed: 3
   canClimb: 0
   moveTowards: {x: 0, y: 0, z: 0}
