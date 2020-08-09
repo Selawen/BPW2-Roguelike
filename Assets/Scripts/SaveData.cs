@@ -8,4 +8,5 @@ public class SaveData
 {
     public int currentSeed;
     public int roomsCompleted;
+    public int timesDied;
 }

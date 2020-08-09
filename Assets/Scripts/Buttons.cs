@@ -25,7 +25,15 @@ public class Buttons : MonoBehaviour
 
     public void RetryLevel()
     {
-        GameObject.Find("GameManager").GetComponent<Pause>().PauseGame();
+        if (generation.gameObject.GetComponent<Pause>().paused)
+        {
+            generation.gameObject.GetComponent<Pause>().PauseGame();
+        }
+        else
+        {
+            panels.deathPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
         generation.RegenerateDungeon();
     }
 
@@ -55,8 +63,8 @@ public class Buttons : MonoBehaviour
         {
             generation.gameObject.GetComponent<Pause>().PauseGame();
         }
-        panels.statsPanel.SetActive(false);
         panels.finishPanel.SetActive(false);
+        panels.deathPanel.SetActive(false);
         panels.mainMenuPanel.SetActive(true);
     }
 

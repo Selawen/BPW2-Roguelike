@@ -29,7 +29,7 @@ public class UpBehaviour : StateMachineBehaviour
                 return;
             }
         }   
-
+        
         if (player.GetComponent<CircleCollider2D>().GetContacts(contactPoints) > 0)
         {
             foreach (ContactPoint2D contactPoint in contactPoints)
@@ -37,7 +37,6 @@ public class UpBehaviour : StateMachineBehaviour
                 if (contactPoint.point.y < (player.gameObject.transform.position.y - 0.5) || contactPoint.point.y > (player.gameObject.transform.position.y + 0.5))
                 {
                     contactPoints = new ContactPoint2D[4];
-                    //animator.SetFloat("yVelocity", -0.002f);
                     return;
                 }
             }

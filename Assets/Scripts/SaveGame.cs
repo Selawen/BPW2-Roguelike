@@ -60,13 +60,42 @@ public class SaveGame : MonoBehaviour
     public void CompletedRoom()
     {
         saveData.roomsCompleted++;
+    }    
+    
+    /// <summary>
+    /// adds one to death counter
+    /// </summary>
+    public void MissionFailed()
+    {
+        saveData.timesDied++;
     }
 
+    /// <summary>
+    /// returns # of rooms completed
+    /// </summary>
+    /// <returns></returns>
     public int RoomsCompleted()
     {
         try
         {
             return saveData.roomsCompleted;
+        }
+        catch (NullReferenceException)
+        {
+            return -1;
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// returns 3 of timed "died"
+    /// </summary>
+    /// <returns></returns>
+    public int DeathCount()
+    {
+        try
+        {
+            return saveData.timesDied;
         }
         catch (NullReferenceException)
         {

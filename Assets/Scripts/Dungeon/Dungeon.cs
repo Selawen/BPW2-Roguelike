@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dungeon : MonoBehaviour
 {
+    private SaveGame saveGame;
     [SerializeField] private int minLength, maxLength;
     private int length;
     [SerializeField] private int minHeight, maxHeight;
@@ -17,6 +18,7 @@ public class Dungeon : MonoBehaviour
     [SerializeField] private Border borderPrefab;
     [SerializeField] private Player playerPrefab;
     [SerializeField] private Finish finishPrefab;
+    [SerializeField] private Enemy EnemyPrefab;
 
     public List<Wall> path { get; private set; }
     public Coordinate nextDirection;
@@ -28,6 +30,7 @@ public class Dungeon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        saveGame = GameObject.Find("GameManager").GetComponent<SaveGame>();
         length = Random.Range(minLength, maxLength);
         height = Random.Range(minHeight, maxHeight);
         //save the length and height of the dungeon as one "Coordinate"
@@ -204,5 +207,63 @@ public class Dungeon : MonoBehaviour
         newFinish.GetComponent<Finish>().hasFinished = false;
 
         newFinish.transform.position = new Vector3(endCoordinate.x * 1.6f - size.x * 0.7f + 0.2f, endCoordinate.y * 1.6f - size.y * 0.7f + 0.2f, 0.0f);
+
+        //start spawning once 3 rooms are completed
+        if (saveGame.RoomsCompleted() > 3)
+        {
+            //instantiate enemy
+            foreach (Wall wall in path)
+            {
+                if (CanPlaceEnemy(wall.coordinates))
+                {
+                    Enemy newEnemy = Instantiate(EnemyPrefab, transform) as Enemy;
+                    newEnemy.name = "Enemy";
+                    newEnemy.transform.position = new Vector3(wall.coordinates.x * 1.6f - size.x * 0.7f + 0.2f, wall.coordinates.y * 1.6f - size.y * 0.7f + 0.2f, 0.0f);
+                    return;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// checks if there is enough space to instantiate enemy
+    /// </summary>
+    /// <param name="currentCoordinate"></param>
+    /// <returns></returns>
+    private bool CanPlaceEnemy(Coordinate currentCoordinate)
+    {
+        if (ContainsCoordinates(currentCoordinate + new Coordinate(1, 0)))
+        {
+            if (GetWall(currentCoordinate + new Coordinate(1, 0)) != null) //no ground to right
+            {
+                return false;
+            }
+            else
+            {
+                for (int x = 0; x <= -2; x--)
+                {
+                    //check if the whole space is within bounds
+                    if ((ContainsCoordinates(currentCoordinate + new Coordinate(x, -1))
+                    || ContainsCoordinates(currentCoordinate + new Coordinate(x, 0))
+                    || ContainsCoordinates(currentCoordinate + new Coordinate(x, 1))
+                    || ContainsCoordinates(currentCoordinate + new Coordinate(x, 2))
+                    ))
+                    {
+                        //    Debug.Log("out of bounds");
+                        //    return false; //return false if not
+                        //} else 
+                        if (GetWall(currentCoordinate + new Coordinate(x, -1)) == null //no ground underneath
+                        || GetWall(currentCoordinate + new Coordinate(x, 1)) != null //ground one above
+                        || GetWall(currentCoordinate + new Coordinate(x, 2)) != null //ground two above
+                        )
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
     {
         //if the player isn't touching anything
-        if (!(GetComponent<Collider2D>().GetContacts(new ContactPoint2D[4]) > 0))
+        if ((GetComponent<Collider2D>().GetContacts(new ContactPoint2D[4]) <= 0))
         {
             //if the player was climbing
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Climbing"))
@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.transform.position.y > gameObject.transform.position.y)
             canClimb = true;
     }
 
