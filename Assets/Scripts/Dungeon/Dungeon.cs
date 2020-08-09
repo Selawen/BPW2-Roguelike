@@ -217,7 +217,7 @@ public class Dungeon : MonoBehaviour
 
         newFinish.transform.position = new Vector3(endCoordinate.x * 1.6f - size.x * 0.7f + 0.2f, endCoordinate.y * 1.6f - size.y * 0.7f + 0.2f, 0.0f);
 
-        //start spawning once 3 rooms are completed
+        //start spawning enemy once 3 rooms are completed
         if (saveGame.RoomsCompleted() > 3)
         {
             //instantiate enemy
