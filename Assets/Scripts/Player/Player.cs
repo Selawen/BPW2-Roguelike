@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public Rigidbody2D rbPlayer;
     public SpriteRenderer playerSprite;
 
-    public float yVelocity;
     public float jumpSpeed;
     public float runSpeed;
     public float climbSpeed;
@@ -27,7 +26,6 @@ public class Player : MonoBehaviour
         playerSprite = gameObject.GetComponent<SpriteRenderer>();
 
         rbPlayer.velocity = new Vector2(0,0);
-        yVelocity = 0;
         animator.SetBool("running", false);
         animator.SetBool("climbing", false);
     }

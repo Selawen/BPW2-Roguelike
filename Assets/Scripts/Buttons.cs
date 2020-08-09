@@ -42,12 +42,21 @@ public class Buttons : MonoBehaviour
         saveGame.ClearData();
         generation.NewDungeon();
         panels.mainMenuPanel.SetActive(false);
+        panels.howToPlayPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void StartRun()
+    {
+        panels.howToPlayPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void ContinueGame()
     {
         generation.RegenerateDungeon();
         panels.mainMenuPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void Stats()

@@ -6,6 +6,7 @@ public class UIPanels : MonoBehaviour
 {
     public GameObject statsPanel;
     public GameObject mainMenuPanel;
+    public GameObject howToPlayPanel;
     public GameObject finishPanel;
     public GameObject pausePanel;
     public GameObject deathPanel;
@@ -17,11 +18,13 @@ public class UIPanels : MonoBehaviour
         finishPanel = GameObject.Find("FinishPanel");
         statsPanel = GameObject.Find("StatsPanel");
         mainMenuPanel = GameObject.Find("MainMenuPanel");
+        howToPlayPanel = GameObject.Find("HowToPlayPanel");
         deathPanel = GameObject.Find("DeathPanel");
 
         pausePanel.SetActive(false);
         finishPanel.SetActive(false);
         statsPanel.SetActive(false);
+        howToPlayPanel.SetActive(false);
         deathPanel.SetActive(false);
     }
 
