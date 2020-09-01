@@ -23,11 +23,11 @@ public class Dungeon : MonoBehaviour
     [SerializeField] private Enemy EnemyPrefab;
 
     public List<Wall> path { get; private set; }
-    public Coordinate nextDirection;
-    public Coordinate previousDirection;
+    [HideInInspector] public Coordinate nextDirection;
+    [HideInInspector] public Coordinate previousDirection;
 
-    [SerializeField] private Coordinate startCoordinate;
-    [SerializeField] private Coordinate endCoordinate;
+    private Coordinate startCoordinate;
+    private Coordinate endCoordinate;
 
     // Start is called before the first frame update
     void Start()
